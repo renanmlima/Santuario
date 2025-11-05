@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Santuário — Igreja em Histórias</title>
+  <style>
+    /* ====== VARIÁVEIS ====== */
+    :root {
+      --blue-dark: #0a2342;
+      --blue-light: #133b6e;
+      --accent: #4dabf5;
+      --highlight: #f1c40f;
+      --bg: #f4f6fb;
+      --card-bg: #ffffff;
+      --muted: #555;
+      --radius: 12px;
+      --shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    /* ====== RESET ====== */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background: var(--bg); color: var(--blue-dark); line-height: 1.6; }
+    img { max-width: 100%; border-radius: var(--radius); }
+    a { text-decoration: none; color: var(--blue-dark); }
+    h1, h2, h3, h4 { color: var(--blue-dark); }
+    .center { text-align: center; }
+    .small { font-size: 0.9rem; color: var(--muted); }
+    .mt-8 { margin-top: 1.5rem; }
+
+    /* ====== CABEÇALHO ====== */
+    .site-header { 
+      background: var(--blue-dark); color: #fff; padding: 1rem 0; position: sticky; top: 0; z-index: 10; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .header-inner { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem; }
+    .brand { display: flex; align-items: center; gap: 1rem; }
+    .brand-badge { background: var(--highlight); color: var(--blue-dark); font-weight: bold; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .main-nav ul { display: flex; list-style: none; gap: 1rem; }
+    .main-nav a { color: #fff; font-weight: 600; transition: 0.3s; padding: 6px 12px; border-radius: 8px; }
+    .main-nav a:hover { background: var(--blue-light); }
+    .menu-toggle { display: none; }
+
+    /* ====== HERO ====== */
+    .hero { display: flex; flex-wrap: wrap; align-items: center; padding: 3rem 1rem; background: linear-gradient(135deg, #e0ebf9, #dbe4f3); border-radius: var(--radius); margin: 2rem 1rem; box-shadow: var(--shadow); }
+    .hero-content { flex: 1; padding: 1rem; }
+    .glow { color: var(--blue-dark); text-shadow: 0 0 10px rgba(77,171,245,0.5); font-size: 2rem; font-weight: 700; }
+    .lead { margin: 1rem 0; max-width: 500px; color: var(--blue-dark); }
+
+    /* ====== BOTÕES ====== */
+    .btn, .chip { border: none; cursor: pointer; border-radius: 20px; padding: 0.6rem 1.2rem; font-weight: bold; }
+    .btn { background: var(--blue-dark); color: white; transition: 0.3s; }
+    .btn:hover { background: var(--blue-light); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--blue-dark); border: 2px solid var(--blue-dark); }
+    .btn-ghost:hover { background: var(--blue-dark); color: white; }
+
+    .chip { background: #e9ebff; margin: 0.2rem; }
+    .chip:hover { background: #d0d2ff; }
+
+    /* ====== CONTEÚDO ====== */
+    .conteudo { max-width: 1100px; margin: auto; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; padding: 2rem 1rem; }
+    .card { background: var(--card-bg); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
+    .aside { background: #f0f2ff; }
+
+    /* ====== SUGESTÕES ====== */
+    .suggestions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+    .suggestion { flex: 1 1 calc(50% - 1rem); background: #e3f2fd; padding: 1rem; border-radius: var(--radius); box-shadow: var(--shadow); transition: transform 0.3s; }
+    .suggestion:hover { transform: translateY(-4px); background: #d0e7ff; }
+
+    /* ====== BOTÃO VOLTAR ====== */
+    .btn-voltar {
+      position: absolute; top: 15px; left: 15px;
+      background: var(--blue-dark); color: #fff; font-size: 1.4rem; border-radius: 50%; width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: all 0.3s ease;
+    }
+    .btn-voltar:hover { background: var(--blue-light); transform: scale(1.1); }
+
+    /* ====== RODAPÉ ====== */
+    footer { background: var(--blue-dark); color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+
+    /* ====== RESPONSIVO ====== */
+    @media (max-width: 800px) {
+      .conteudo { grid-template-columns: 1fr; }
+      .main-nav ul { display: none; flex-direction: column; background: var(--blue-dark); position: absolute; top: 60px; right: 10px; padding: 1rem; border-radius: 8px; }
+      .main-nav[aria-expanded="true"] ul { display: flex; }
+      .menu-toggle { display: block; background: none; border: none; color: white; font-size: 1.5rem; }
+      .suggestion { flex: 1 1 100%; }
+    }
+
+    /* ====== ANIMAÇÕES ====== */
+    .fade { animation: fadeIn 1s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="Index.html" class="btn-voltar" title="Voltar">←</a>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-badge">JSTP</div>
+        <div><h1>Santuário</h1></div>
+      </div>
+      <nav class="main-nav">
+        <button class="menu-toggle" aria-expanded="false">☰</button>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#historia">Nossa História</a></li>
+          <li><a href="#jovens">Jovens</a></li>
+          <li><a href="#sugestoes">Sugestões</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero fade">
+      <div class="hero-content">
+        <h2 class="glow">Nossa Senhora de Todos os Povos</h2>
+        <p class="lead">
+          A história de Nossa Senhora de Todos os Povos envolve as aparições para a vidente holandesa <strong>Ida Peerdeman</strong> em Amsterdã, entre 1945 e 1959.
+          Maria pediu orações pela paz mundial e alertou sobre os rumos da Igreja e do mundo.
+        </p>
+        <p>Embora a veneração tenha sido autorizada em 1996, a Igreja Católica ainda não reconheceu a autenticidade sobrenatural das aparições.</p>
+      </div>
+    </section>
+
+    <section id="historia" class="conteudo fade">
+      <div class="story-panel card">
+        <h2>Uma história de fé e união</h2>
+        <p>
+          As mensagens transmitidas por Nossa Senhora pediam a conversão dos corações e a oração do “Senhor Jesus Cristo, Filho do Pai, envia agora o Teu Espírito sobre a Terra”.
+          Essa invocação, conhecida como a <em>Oração de Todos os Povos</em>, tornou-se um símbolo de esperança para fiéis de todo o mundo.
+        </p>
+      </div>
+
+      <aside class="card aside">
+        <h3>Significado do título</h3>
+        <p class="small">
+          O título “Nossa Senhora de Todos os Povos” expressa a universalidade do amor e da intercessão de Maria — Mãe que acolhe cada povo, raça e nação.
+        </p>
+      </aside>
+    </section>
+
+    <section id="sugestoes" class="conteudo fade">
+      <div class="card">
+        <h2>Sugestões para os jovens</h2>
+        <p>Confira algumas ideias para aprofundar sua fé e participação no grupo:</p>
+        <div class="suggestions">
+          <div class="suggestion">
+            <h4>Orar em conjunto</h4>
+            <p>Participe das reuniões semanais de oração e fortaleça os laços com outros jovens.</p>
+          </div>
+          <div class="suggestion">
+            <h4>Estudo bíblico</h4>
+            <p>Dedique um tempo semanal ao estudo da Bíblia, refletindo sobre as mensagens de Maria.</p>
+          </div>
+          <div class="suggestion">
+            <h4>Atividades de serviço</h4>
+            <p>Envolva-se em ações sociais promovidas pelo grupo, ajudando a comunidade local.</p>
+          </div>
+          <div class="suggestion">
+            <h4>Dinâmicas criativas</h4>
+            <p>Participe de atividades lúdicas e educativas que aproximam os jovens da fé.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; <span id="year"></span> Santuário — Feito com carinho 💙</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // Menu toggle mobile
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+      toggle.setAttribute('aria-expanded', !expanded);
+      nav.setAttribute('aria-expanded', !expanded);
+    });
+  </script>
+</body>
+</html>

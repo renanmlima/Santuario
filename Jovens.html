@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo de Jovens - Igreja São José</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Paleta jovem em azul #0e1d47 --- */
+    :root {
+      --bg: #0e1d47;
+      --card: rgba(255,255,255,0.05);
+      --glass: rgba(255,255,255,0.06);
+      --accent1: #4dabf5; /* azul claro */
+      --accent2: #ff6b6b; /* salmão */
+      --accent3: #ffd93d; /* amarelo */
+      --muted: #b8c0cc;
+      --white: #ffffff;
+      --glass-border: rgba(255,255,255,0.06);
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.6);
+      --glass-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; font-family: 'Poppins', sans-serif; background: linear-gradient(180deg, #0b1332, var(--bg)); color: var(--white); }
+
+    /* Header */
+    header {
+      position: sticky;
+      top:0;
+      backdrop-filter: blur(8px);
+      background: rgba(14,29,71,0.9);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 14px 18px;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      color: var(--white);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 14px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--white);
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Conteúdo principal */
+    .conteudo {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 18px;
+      display: grid;
+      gap: 22px;
+    }
+
+    h2 {
+      color: var(--accent1);
+      font-size: 2rem;
+      margin-bottom: 12px;
+      text-shadow: 0 0 6px rgba(255,255,255,0.2);
+    }
+
+    h3 {
+      color: var(--accent2);
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Cards interativos */
+    .card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+    }
+
+    /* Botões animados */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 18px;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    /* Animação de entrada */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Texto com glow animado */
+    .text-glow {
+      color: var(--white);
+      text-shadow: 0 0 10px var(--accent1), 0 0 20px var(--accent1), 0 0 30px var(--accent1);
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+   .btn-voltar {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #0a2342;
+      color: #fff;
+      font-size: 1.4rem;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-voltar:hover {
+      background: #133b6e;
+      transform: scale(1.1);
+    }
+  
+    @keyframes pulseGlow {
+      from {
+        text-shadow: 0 0 5px var(--accent1), 0 0 10px var(--accent1);
+      }
+      to {
+        text-shadow: 0 0 15px var(--accent2), 0 0 25px var(--accent2);
+      }
+    }
+
+    /* Responsivo */
+    @media (max-width: 680px){
+      .conteudo { padding: 16px; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="Index.html" class="btn-voltar" title="Voltar">←</a>
+    <br>
+    <h1 class="fade-in">Grupo de Jovens JSTP</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="jovens.html" class="active text-glow">Jovens</a></li>
+        <li><a href="fotos.html">Fotos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="conteudo fade-in">
+    <div class="card">
+      <h2>Sobre o grupo</h2>
+      <p>
+        O grupo de jovens JSTP (Juventude a Senhora de Todos os Povos) é um espaço de fé, amizade e partilha.
+        Nos reunimos todos os sábados às 19h30 para momentos de oração, dinâmicas, música e reflexão.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Missão</h3>
+      <p>
+        Levar o amor de Cristo a todos os jovens e fortalecer a caminhada cristã com alegria e comunhão.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Participe!</h3>
+      <p>
+        Venha conhecer o grupo e fazer parte dessa grande família! 💛
+      </p>
+      <a href="index.html" class="btn">Quero Participar!</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Paróquia a Senhora de Todos os Povos</p>
+  </footer>
+</body>
+</html>
